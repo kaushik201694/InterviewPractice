@@ -1,0 +1,19 @@
+TO READ LIST
+----------------------
+
+1) TSM & PAP arhitecture and working in details
+
+2) C 
+
+3) C++/OOPS  --> Virtual Functions, V-table, Polymorphism, Copy constructors, Destructors  ,etc .
+
+4) DATA STRUCTURES --> linked lists(single and double), stack/queue , tree(V V IMP) , HASHING , HEAP ,GRAPH
+
+5) ALGO ---> Time & space complexity analysis, binary search, bubble sort, instertion sort, merge &quick sort . 
+           
+		   
+6) Greedy Algo and Dynamic programming 
+
+		   
+		   
+		   

@@ -1,0 +1,73 @@
+●	Worked as a Developer for debugging, developing and unit testing various modules of SSR    (Physical Chassis Router) and EVR (Ericsson Virtual Router) of Ericsson.
+●	Debugged and fixed many TRs (Trouble Reports).
+●	Worked as part of the team on 'Ingress Optimization' feature on Ericsson Virtual Router, and resolved multiple complex issues here involving multi-threading, race conditions and mutex. 
+●	Worked on the development of a major feature called 'Packet trace and debuggability' which mainly focus on improving the packet debug ability that will help in reducing packet loss Wrote a counter function and wrote code for the implementation of 6 CLIs for the feature. Also did unit testing whenever some bugs appeared.
+●	Worked on the development of a major feature called ‘PARP Hardening’ to increase the robustness of PARP module in EVR by monitoring the causes of packet drops. The work involved implementation of IPC messages from RP(Routing plane) to LC(Line card) and vice versa to collect PAP states and compare them. Also implemented CLI commands for it.
+●	Developed a “logdump” command to collect all logs related to the PARP module within a single file in the EVR.
+●	Worked on developing an alarm whenever PAP state goes to UNRSV state in VSFO card in EVR.
+Company:  Aspect Software, Bengaluru, Karnataka
+Role: Research and Development Engineer
+Period: May 2020 - Present
+●	Working as a R&D Engineer with primary job being developing, debugging and testing issues and feature work on multiple Aspect UIP projects like M3, UCC, EM and UAD modules using C++ and C# .NET.
+●	Developed of a major feature (technology refresh) for M3 Module where we have to replace obsolete DirectX components and use powerful 3party components for audio playback and recording purposes.
+●	Worked and handled a many customer issues based on the module that I get assigned to.
+●	Worked and fixed many code security (Coverity) related issues,
+●	Worked on a enhancement feature for UCC module wherein we made user authentication more secure using more encryption and LDAP and SAML authentication.
+●	Worked in the development for a major technology refresh work Dataviews module where the entire project is migrated from VB6 to C#.NET environment along with inclusion of additional 3rd party solutions.
+●	Worked on a major development for EM client application related to improved functionality.
+
+
+Introduction:
+
+So, hey my name is Kaushik
+I am a software developer with currently over 4 and half years of experience
+In my initial 2 and half years, I worked in Wipro as a Software Engineer for Ericsson client. I was part of NFV team for Ericsson.
+Currently for past 2 years, I am working in Aspect Software as a RnD engineer where we provide on-premise solutions to customers using call centers.
+In the 2 companies that I have worked in, my primary role is a  developer working on enchacement futures and solving bugs and handling escalations
+Have worked multiple development projects ranging from adding some new fuctionalities to existing architectute/application and perfoming technology refresh To being in a team where we were implementing entire architecture from groundup.
+The languages that I have worked on are C, C++ and C#. I am proficient in both C and C++. 
+Have worked on both Linux and Windows and my development environment. So I have knowledge on both OS.
+
+
+Things that I did in Wirpo:
+
+Types of issues:
+1) Some particular command of EVR isnt executing in some system. 
+	Steps to resolve: -  Performed some Implemented some debug codes, build the package and apply the package/image file in evr chassis. 
+									Then perform debugging with gdb -p pid command. pid is the process id for the process where the debugging will be performed.
+2) Somtimes EVR chassis will crash/restart/failover in between usage. Run the evr chassis through debug mode by running a command. and after that whenever the crash/automatic restart happens,
+	we will analyze the logs and try to find out the issue.
+	
+	Ingress Optimization:  Basically a producer/consumer problem implementation. 2 threads. 1 Large Hashtable. Data coming from application layer API.
+										Hashtable is filled by 1 thread. The other thread uses the data stored and process it.
+	
+	
+	
+	
+	Packet Trace and debuggability: Tracking packet data structure values in each through multiple compenents and providing adequatuate logs and
+									updates inorder to find at which module the packet might be getting dropped or some other inconsistencies.
+		
+	
+	PARP hardening: impelemented IPC for updating important information across varios modules and processes.
+
+	
+	
+
+Things I do in Aspect:
+
+Types of issues:
+1)  UIP73SP3: ERA Benchmarking : M3 Server Id<4> RunScript queue is stuck; too many packets in the queue<24> and observing  M3 Session queue is stuck for more than <30> seconds . Resetting M3Server !!!
+		 This issue was solved by implementing a lock mechanism to the critical section.
+
+2) IVR server was showing sensitive data in logs. Had to implement changes across multiple files to mask the data in the logs.
+
+3) Solved some application slow issues caused by persistant CPU high percent usage while executing/performing certain application instances. Using some better data structure management and algorithms for such cases solved
+the issue. Recently fixed a similar issue where opening certain option from the hamburgur menu of Enterprise Monitor, the CPU usage percent remains at constant 100 percent. I found that the issue was happeing because
+a db query was getting executed continuously. Modified the DB query. Impelented a dictionary data structure which will contain the results of the 
+
+Feature work:
+1)DirectX upgrade for M3 designer
+
+2)LDAP and SAML authentication implementation for UCC admin
+
+3) Upgrade from vb6 to c# .net for dataviews project

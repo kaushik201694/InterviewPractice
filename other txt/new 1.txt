@@ -1,0 +1,46 @@
+Kaushik Chatterjee
+Brookfield, Bengaluru, Karnataka
++91 7008687505
+Email Id- kaushik201694@gmail.com
+Summary
+A very passionate developer with 1.7+ years of experience with developing and debugging.
+Education
+VSSUT Burla
+Sambalpur, Odisha
+Graduated May 2017
+B Tech Degree for Electronics and Tele- Communication Engg. 
+Mother's Public School
+Higher Secondary (Class 11 - Class 12)
+Bhubaneswar, Odisha
+Graduated May 2012 
+Employment History
+Total Experience –> 1.7+ years
+Wipro Technologies Ltd
+Developer
+Bengaluru, Karnataka
+November 2017 – Present
+•	Working as a Developer for debugging, developing and unit testing various modules of SSR and EVR routers for Ericsson. 
+•	Implementing Networking concepts as well as C programming concepts to solve various issues and bugs.
+•	Was involved in developing a feature extension on a race condition involving mutex locks and queues.
+•	Currently working on the development of a major feature which mainly focus on the improving the packet debug ability that will help in reducing packet loss .Wrote a counter function and wrote code for the implementation of 6 CLIs for the feature. Also did unit testing whenever some bugs appears.
+
+Professional Skills
+•	C programming
+•	Networking (Routing & Switching)
+•	Data Structure and Algorithms
+•	Multithreading
+•	Unit Testing
+•	Linux 
+•	GDB debugging
+•	GIT
+•	Socket programming
+•	Python 
+Achievements
+•	Received 5-Star rating in Wipro for my performance in the project.
+Hobbies & Interests
+•	Playing computer games , Solving Old Google Code Jam problems, Listening music.
+Languages
+•	English , Hindi , Bengali , Odia
+Currently Learning
+•	Improving skills in data structures and algorithms.
+•	Neural Networks and Python.

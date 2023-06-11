@@ -1,0 +1,58 @@
+RIB --> FIB --> Service map table --> Tsft table --> pap table --> application
+
+RIB --> different FIB tables as per different contexts --> nexthop lookup --> diff types of nexhop --> svcmap -->tsft --> papt
+                                                        (It's present in FIB)   --> plain nexthop(in this case , router will 
+																								   act as a forwarding agent)
+																		        --> loopback nexthop
+																				--> TS nexthop
+																				--> local nexthop
+			
+PAPT
+-----
+paptid  |  pap_state  |  papid  |  pap_process  |  sepinfo  |  groupid  |  
+
+
+
+	void pointer typecasting
+	linked list
+	reverse number
+	
+	merge point of LL
+	Nearest common ancestor in tree
+	
+
+I am a part of NFV team of Ericsson. Our team works on traffic steering module in EVR,ie, Ericsson Virtual Router.
+In one sentence Taffic Steering invloves steering ingress traffic coming from LC to appropriate application instance
+running VSFO/SSC cards.
+SSC cards have intel processrors running in them. They have the power to run application instances in them.
+But SSC cards dont have any physical port.
+All the application traffic ingresses in and egresses out from the "normal" line cards.the thoughtput of these LCs are 
+much greater than the SSC cards.
+The application traffic ingressing though the LC, is need to be "steered" to right SSC card based on the application instance
+that is running on it(SSC).
+
+There are 2 steps involved in Traffic steering:
+1)PAP configuration :-> Each application instance(say EPG) running on a SSC/VSFO is enabled with with a unique 
+                        Packet Access Point (PAP) to recieve traffic.
+2)TSM configuration :-> All the LC/SSC cards are provided with required 
+                    “TSM-Traffic Slice Management ” configuration to steer the ingress traffic to the right PAP.
+            
+PAP configuration :->
+------------------------
+The Packet Access Point (PAP) is an endpoint that is opened by an application to send/receive packets in the SSC.
+The PAP is identified by a unique 32bit value across the SSR chassis and this value is called the PAPID.  
+This PAPID as defined and used by applications such as EPG and IPSEC comprises of three fields :
+	1)slot_id --> implies to the specific slot to which the papid is binded.
+	2)PAP_STYPE --> identifies the service type of the traffic that is expected to be received on the PAP endpoint.
+	3)PAP_index --> identifies the hardware resources such as the Niantic port and queue used for the PAP endpoint.
+	
+ TSM APP 
+TSM APP library is used by applications to configure one or more services through TSM APP API.
+
+ TSM RP 
+TSM RP is process running in RP to handle application configurations and TSM cli. TSM
+RP also interact with TSM-FABL to download configuration from RP to linecard slots.
+
+ TSM FABL
+TSM FABL is process running in all linecard card and SSC card slots. This process
+receives configuration from TSM RP and pass configuration to PFE through ALD.

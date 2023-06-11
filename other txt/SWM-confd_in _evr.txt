@@ -1,0 +1,80 @@
+Exec-cli to confd image 
+
+Before Release download -
+=======================
+
+config
+context local
+administrator test password test
+role SystemAdministrator
+role SystemSecurityAdministrator
+commit
+end  
+
+[local]evr_5d17_vsffrd-evr2#save configuration 
+Save to file: ericsson.cfg
+Target file exists, overwrite? (y/n) y
+
+
+Release download the bundle image after untar (non SWM) -
+===============================================
+Use tar -zxvf <SWM bundle image name>
+
+Use the bundle.tar.gz to upload
+
+release download ftp://arts02:GodZilla1@132.196.204.5//home/zchakau/TR/pkg-vipp-vrp-bundle.tar.gz
+
+release download ftp://arts02:GodZilla1@132.196.204.5//home/zchakau/pkg-vipp-vrp-178_bundle.tar.gz
+
+After release download is successful –
+===================================
+[local]evr_5d17_vsffrd-evr2#start shell       
+bash-4.2$ /install/usr/lib/siara/bin/upgrade.sh -f
+
+		Detailed log can be found in /md/upgrade.log
+		Migration source /flash/ericsson.cfg, output /flash/ericsson.xml
+		Upgrade IPOS legacy configuration to new configuration...
+		Some IPOS commands are unsupported. Refer to /flash/ericsson.cfg.unsupported_cmds for details
+		Migrating Application(app_sim) legacy configuration into draft ericsson.xml for yang-server...
+		Translating password for the generated ericsson.xml...
+		Validating the generated ericsson.xml...
+		Moving ericsson.xml to /flash directory...
+		Finish upgrade script!
+
+bash-4.2$
+
+
+Now do Release Upgrade -
+======================
+release upgrade 
+
+
+
+For Downloading a new SWM bunled image onto a EVR in which already SWM bundled image is loaded , follow these steps --->
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+->[local]evr_5d17_vsffrd-evr4#swm create-upgrade-package uri scp://arts02@132.196.90.27///home/zchakau/temp/ password GodZilla1
+return-value 3
+
+This step gives a return value. Check the below command and get the package number which you will use for further steps.
+In above step only mention the path where the untarred/unzipped package with – bundle image and xml files is present.                           
+                                    
+									OR 
+									
+swm create-upgrade-package uri scp://zkxxrag@132.196.90.35//project/swbuild/zkxxrag/newBundleMethod password
+  then give signum password
+  
+  
+  
+show swm report-progress
+
+swm upgrade-package 1 prepare             --------> this upgrade package number will be seen from the previous "report-progress" step. It can be 1 or 2 or anyting.
+
+show swm upgrade-package 1 report-progress
+
+swm upgrade-package 1 verify
+
+show swm
+
+swm upgrade-package 1 activate

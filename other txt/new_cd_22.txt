@@ -1,0 +1,112 @@
+eselnvlx2764 [8:14] [/tools/swdev/bin] -> ./coredump.20170228 -all ~/VRE-5515/20191227_070027_parpd.4916.1577430027.IPOS_evr_4d02_vsfo-evr1.core
+Coredump (v1.11) script by Mike Andersen.  Email: mike.andersen@ericsson.com
+Analyzing corefile...
+/home/zchakau/VRE-5515/20191227_070027_parpd.4916.1577430027.IPOS_evr_4d02_vsfo-evr1.core: ELF 64-bit LSB core file x86-64, version 1 (SYSV), SVR4-style, from '/usr/lib/siara/bin/parpd', real uid: 0, effective uid: 0, real gid: 0, effective gid: 0, execfn: '/usr/lib/siara/bin/parpd', platform: 'x86_64'
+    GDB: /tools/swdev/bin/gdb/bin/x86_64-poky-linux-gdb
+ TARGET: SSR-RP
+PROCESS: parpd
+VERSION: 20.0.0.0 (private 27Dec06:27:402019-zchakau)
+ BRANCH: 
+Enter location of image: /home/zchakau/VRE-5515/pkg-vipp-vrp_22.tar.gz
+  IMAGE: /home/zchakau/VRE-5515/pkg-vipp-vrp_22.tar.gz
+Temporary directory: /tmp/coredump-zchakau
+Generating backtrace for 'parpd'...
+sh: line 0: cd: /tools/swdev/bin/src: No such file or directory
+cp: cannot stat `/tools/swdev/bin/src/./gdb/bin/obj/Linux-i686/sysroots/x86_64-wrs-linux/usr/src/debug/eglibc-sourcery-compile/2.18-4.8-r1/glibc-2.18-4.8/stdlib/abort.c': No such file or directory
+sh: line 0: cd: /tools/swdev/bin/src: No such file or directory
+cp: cannot stat `/tools/swdev/bin/src/./gdb/bin/obj/Linux-i686/sysroots/x86_64-wrs-linux/usr/src/debug/eglibc-sourcery-compile/2.18-4.8-r1/glibc-2.18-4.8/assert/assert.c': No such file or directory
+sh: line 0: cd: /tools/swdev/bin/src: No such file or directory
+cp: cannot stat `/tools/swdev/bin/src/./gdb/bin/obj/Linux-i686/sysroots/x86_64-wrs-linux/usr/src/debug/eglibc-sourcery-compile/2.18-4.8-r1/glibc-2.18-4.8/assert/assert.c': No such file or directory
+#0  0x00002ae0450194d8 in __GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:55
+#1  0x00002ae04501c5aa in __GI_abort () at abort.c:89
+#2  0x00002ae045012457 in __assert_fail_base (fmt=<optimized out>, assertion=assertion@entry=0x411bd4 "msg_size <= 1024", file=file@entry=0x412980 "sw/se/xc/bsd/comp/nfv/parp/parpd/src/parpd.c", line=line@entry=465, function=function@entry=0x412870 <__PRETTY_FUNCTION__.11658> "parp_wrkq_enqueue") at assert.c:92
+#3  0x00002ae045012502 in __GI___assert_fail (assertion=0x411bd4 "msg_size <= 1024", file=0x412980 "sw/se/xc/bsd/comp/nfv/parp/parpd/src/parpd.c", line=465, function=0x412870 <__PRETTY_FUNCTION__.11658> "parp_wrkq_enqueue") at assert.c:101
+#4  0x0000000000403283 in parp_wrkq_enqueue ()
+#5  0x0000000000403b5f in parp_enqueue_wrkq_data ()
+#6  0x000000000040f43a in parp_ipc_main ()
+#7  0x0000000000000000 in ?? ()
+#0  pthread_cond_timedwait () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_timedwait.S:225
+#1  0x00002ae0438e406f in msgq_receive () from ./usr/lib/siara/lib64/libmsg_queue.so.0.0
+#2  0x0000000000404cbd in parp_timer_handler ()
+#3  0x00002ae0441103d4 in start_thread (arg=0x2ae04b082700) at pthread_create.c:460
+#4  0x00002ae0450ce90d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 7 (LWP 4964):
+#0  pthread_cond_wait () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x00002ae0438e3fd2 in msgq_receive () from ./usr/lib/siara/lib64/libmsg_queue.so.0.0
+#2  0x000000000040ac64 in parp_wrkq_handler ()
+#3  0x00002ae0441103d4 in start_thread (arg=0x2ae04b283700) at pthread_create.c:460
+#4  0x00002ae0450ce90d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 6 (LWP 4917):
+#0  0x00002ae0450c75e3 in select () at ../sysdeps/unix/syscall-template.S:84
+#1  0x00002ae0403fb085 in ipcThread () from ./usr/lib/siara/lib64/libipc.so.0.0
+#2  0x00002ae0441103d4 in start_thread (arg=0x2ae04a87e700) at pthread_create.c:460
+#3  0x00002ae0450ce90d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 5 (LWP 4916):
+#0  0x00002ae04411164d in pthread_join (threadid=47142821967616, thread_return=0x7fffff7457c8) at pthread_join.c:90
+#1  0x00000000004062b6 in main ()
+
+Thread 4 (LWP 4957):
+#0  pthread_cond_wait () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x00002ae0403fb393 in ipcStats () from ./usr/lib/siara/lib64/libipc.so.0.0
+#2  0x00002ae0441103d4 in start_thread (arg=0x2ae04aa7f700) at pthread_create.c:460
+#3  0x00002ae0450ce90d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 3 (LWP 4958):
+#0  pthread_cond_wait () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x00002ae0403e8deb in ipcReceiveEx () from ./usr/lib/siara/lib64/libipc.so.0.0
+#2  0x00002ae0403f117c in ipcReceive () from ./usr/lib/siara/lib64/libipc.so.0.0
+#3  0x0000000000411251 in parpd_cli_thread ()
+#4  0x00002ae0441103d4 in start_thread (arg=0x2ae04ac80700) at pthread_create.c:460
+#5  0x00002ae0450ce90d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 2 (LWP 4959):
+#0  0x00002ae044119203 in recvfrom () at ../sysdeps/unix/syscall-template.S:84
+#1  0x00002ae04558feb2 in rbos_tipc_rcv_data () from ./usr/lib/siara/lib64/librbostipc.so.0.0
+#2  0x00002ae03f54a499 in rbn_evt_sub_handler_helper () from ./usr/lib/siara/lib64/librbn_events.so.0.0
+#3  0x00002ae03f54b0ca in rbn_evt_hi_sub_handler () from ./usr/lib/siara/lib64/librbn_events.so.0.0
+#4  0x00002ae0441103d4 in start_thread (arg=0x2ae04ae81700) at pthread_create.c:460
+#5  0x00002ae0450ce90d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 1 (LWP 5019):
+#0  0x00002ae0450194d8 in __GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:55
+#1  0x00002ae04501c5aa in __GI_abort () at abort.c:89
+#2  0x00002ae045012457 in __assert_fail_base (fmt=<optimized out>, assertion=assertion@entry=0x411bd4 "msg_size <= 1024", file=file@entry=0x412980 "sw/se/xc/bsd/comp/nfv/parp/parpd/src/parpd.c", line=line@entry=465, function=function@entry=0x412870 <__PRETTY_FUNCTION__.11658> "parp_wrkq_enqueue") at assert.c:92
+#3  0x00002ae045012502 in __GI___assert_fail (assertion=0x411bd4 "msg_size <= 1024", file=0x412980 "sw/se/xc/bsd/comp/nfv/parp/parpd/src/parpd.c", line=465, function=0x412870 <__PRETTY_FUNCTION__.11658> "parp_wrkq_enqueue") at assert.c:101
+#4  0x0000000000403283 in parp_wrkq_enqueue ()
+#5  0x0000000000403b5f in parp_enqueue_wrkq_data ()
+#6  0x000000000040f43a in parp_ipc_main ()
+#7  0x0000000000000000 in ?? ()
+(gdb) up 0
+#0  0x00002ae0450194d8 in __GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:55
+55	in ../sysdeps/unix/sysv/linux/raise.c
+(gdb) info locals
+resultvar = 0
+pid = 4916
+selftid = 5019
+(gdb) up
+#1  0x00002ae04501c5aa in __GI_abort () at abort.c:89
+89	abort.c: No such file or directory.
+(gdb) info locals
+save_stage = 2
+act = {__sigaction_handler = {sa_handler = 0x4, sa_sigaction = 0x4}, sa_mask = {__val = {6775010381074006093, 9223372033198320512, 47142824054784, 8589934592, 0, 0, 0, 21474836480, 47142720022529, 47142824054936, 47142824054736, 47142720037232, 47142720057504, 7954869253379813408, 47142588588032, 4266964}}, sa_flags = 465, sa_restorer = 0x412870 <__PRETTY_FUNCTION__.11658>}
+sigs = {__val = {32, 0 <repeats 15 times>}}
+(gdb) up
+#2  0x00002ae045012457 in __assert_fail_base (fmt=<optimized out>, assertion=assertion@entry=0x411bd4 "msg_size <= 1024", file=file@entry=0x412980 "sw/se/xc/bsd/comp/nfv/parp/parpd/src/parpd.c", line=line@entry=465, function=function@entry=0x412870 <__PRETTY_FUNCTION__.11658> "parp_wrkq_enqueue") at assert.c:92
+92	assert.c: No such file or directory.
+(gdb) info locals
+str = 0xd07250 ""
+total = 4096
+(gdb) up
+#3  0x00002ae045012502 in __GI___assert_fail (assertion=0x411bd4 "msg_size <= 1024", file=0x412980 "sw/se/xc/bsd/comp/nfv/parp/parpd/src/parpd.c", line=465, function=0x412870 <__PRETTY_FUNCTION__.11658> "parp_wrkq_enqueue") at assert.c:101
+101	in assert.c
+(gdb) info locals
+No locals.
+(gdb) up
+#4  0x0000000000403283 in parp_wrkq_enqueue ()
+(gdb) info locals
+No symbol table info available.
+Removing temporary directory: /tmp/coredump-zchakau
+eselnvlx2764 [8:17] [/tools/swdev/bin] -> 

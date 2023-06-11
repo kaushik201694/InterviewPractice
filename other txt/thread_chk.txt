@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+#include<unistd.h>
+
+
+int a=0;
+unsigned int rc;
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
+
+void* even_print(void*);
+void* odd_print(void*);
+
+int main(int argc, char *argv[])
+{
+    int max=atoi(argv[1]);
+    int thrd_1,thrd_2;
+    pthread_t thread_id[2];
+    thrd_1=pthread_create(&thread_id[0], NULL, even_print, (void*)&max);
+    thrd_2=pthread_create(&thread_id[1], NULL, odd_print, (void*)&max);
+    pthread_join(thread_id[0], NULL);
+    pthread_join(thread_id[1], NULL);
+    printf("The threads have done their job\n");
+}
+
+
+void* even_print(void *data)
+{
+    int* end=(int *)data;
+    int b=*end;
+    rc= pthread_mutex_lock(&mutex);
+     while(a<=b)
+     {
+         if(a%2 == 0)
+         {
+             printf("Even:%d\n",a);
+             sleep(2);
+             a++;
+         }
+         else
+         {
+             rc=pthread_mutex_unlock(&mutex);
+         }
+     } 
+}
+
+void* odd_print(void *data)
+{
+     int* end=(int *)data;
+     int b=*end;
+     rc= pthread_mutex_lock(&mutex);
+     while(a<=b)
+     {
+         if(a%2 != 0)
+         {
+             printf("Odd:%d\n",a);
+             sleep(2);
+             a++;
+         }
+         else
+         {
+             rc=pthread_mutex_unlock(&mutex);
+         }
+     } 
+}

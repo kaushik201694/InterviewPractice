@@ -1,0 +1,282 @@
+1) '&' operator is used for even/odd
+	if(x&1)
+		printf("ODD");
+	else
+		printf("EVEN");
+
+2) to set a particular bit--> num|=(1<<pos)
+
+3) 1<<n is 2^n
+
+4) to unset a particular bit --> num&=(~(1<<pos))
+
+5) to toggle a particular bit --> num^=(1<<pos)
+
+6) to check a bit at particular pos is set/unset --> bool bit = num & (1<<pos)
+
+7) 1's compliment (inverting all the bits of the number) --> ~num
+
+8) 2's compliment --> (~num+1)
+
+9) to check if a number is power of 2 --> if the expression x&(x-1) is 0, then the number is power of 2
+
+10) adding 1 to a number --> -~x
+
+11) Swap numbers using ^ operator :
+	x = x^y;
+	y = x^y;
+	x = x^y;
+
+12) Unset rightmost set bit -> (n&(n-1))
+	ex --> n   = 20 -> 10100
+		   n-1 = 19 -> 10011
+		   result  =   10000  (clearly the rightmost set bit of 20 is now unset)
+
+13)	using bit malipulation, check if a number is power of 2:
+		In the above example we saw how we can unset the rightmost set bit.
+		Anumber which is power of 2 will have only 1 set bit. If we now use the above procedure,
+		we should be left with 0 which will imply the number given is power of 2.
+		if(n&(n-1))
+			printf("the given number is NOT power of 2");
+		else
+			printf("The number is a power of 2");
+		
+		ex --> n   = 16 -> 10000
+			   n-1 = 15 -> 01111
+		       result  =   00000
+
+14) Find position of rightmost set bit --> 
+				// unset rightmost bit and xor with number itself
+				n = n ^ (n & (n - 1));
+				int pos = 0;
+				while (n)
+				{
+					n = n >> 1;
+					pos++;
+				}
+				return pos;
+
+15) Count parity of a given number :
+	Parity refer to number of 1's in the given number while it is been represented in binary form.
+	If the number of 1's is odd, then its Odd parity else it's Even parity. 
+	We will do this by unsetting the set bits from the right inside a while loop.
+	
+	unsigned findParity(unsigned n)
+	{
+		bool parity = false;
+		
+		// run till n is not zero
+		while (n)
+		{
+			// invert the parity flag
+			if (n & 1)
+				parity = !parity;
+			
+			// right shift n by 1 (divide by 2)
+			n = n >> 1;
+		}
+		
+		return parity;
+	}
+	
+16) Convert uppercase to lowercase --> ch|=" "   (doing 'or' with space)
+
+17) Convert lowercase to uppercase --> ch&="_"     (doing 'and' with underscore)
+
+18) Invert case --> ch^=' '
+
+19) Position of the only set bit :
+	int isPowerOfTwo(unsigned n) 
+	{ 
+		return n && (!(n & (n - 1))); 
+	} 
+	  
+	// Returns position of the only set bit in 'n' 
+	int findPosition(unsigned n) 
+	{ 
+		if (!isPowerOfTwo(n)) 
+			return -1; 
+	  
+		unsigned i = 1, pos = 1; 
+	  
+		// Iterate through bits of n till we find a set bit 
+		// i&n will be non-zero only when 'i' and 'n' have a set bit 
+		// at same position 
+		while (!(i & n)) { 
+			// Unset current bit and set the next bit in 'i' 
+			i = i << 1; 
+	  
+			// increment position 
+			++pos; 
+		} 
+	  
+		return pos; 
+	} 
+	
+20) Swap 2 bits of given number:
+	// Function to swap bits at position `p` and `q` in integer `n`
+	int swap(int n, int p, int q)
+	{
+		// if bits are different at position `p` and `q`
+		if (((n & (1 << p)) >> p) ^ ((n & (1 << q)) >> q))
+		{
+			n ^= (1 << p);
+			n ^= (1 << q);
+		}
+		return n;
+	}
+	
+21) Decimal to binary using bitwise operator:
+
+	Method 1:
+	
+	char* toBinary(int n, int len)
+	{
+    char* binary = (char*)malloc(sizeof(char) * len);
+    int k = 0;
+    for (unsigned i = (1 << len - 1); i > 0; i = i / 2) {
+        binary[k++] = (n & i) ? '1' : '0';
+    }
+    binary[k] = '\0';
+    return binary;
+	}
+
+	Method 2:
+
+	void binary (unsigned int n)
+	{
+		if(n>1)
+			binary(n>>1);
+		
+		printf("%d", n&1);
+	}
+
+22) Count total set bits (using Brian Kernighan's Algo)
+
+	//IMP point -> The expression n & (n-1) can be used to turn off the rightmost set bit of a number n.
+
+	int countSetBits(int n)
+	{
+		int count =0;
+		while(n)
+		{
+			n = n & (n-1);
+			count++;
+		}
+		return count;
+	}
+
+23) Total number of bits to be flipped between 2 numbers to make them equal
+
+	/*
+	Ex-
+	Input:
+ 
+	x = 65 (which is 01000001 in binary)
+	y = 80 (which is 01010000 in binary)
+	
+	Output: The total number of bits to be flipped is 2
+	*/
+
+	//We are going to XOR the 2 numbers first, so that we will get the mismatched bits between those 2. After that simpe Brian Kernighan's algo will get the result
+	
+	int findBitsToFlip(int x, int y)
+	{
+		// take XOR of `x` and `y` and store in `n`
+    	int n = x ^ y;
+ 
+    	// Using Brian Kernighan’s algorithm to count set bits
+ 
+		int count = 0;	
+		while (n)
+		{
+			n = n & (n - 1);
+			count++;
+		}
+		return count;
+	}
+
+24) Reverse bits of an integer
+	// A macro that defines the size of an integer
+	#define INT_SIZE sizeof(int) * 8
+	
+	// Function to reverse bits of a given integer
+	int reverseBits(int n)
+	{
+		int pos = INT_SIZE - 1;     // maintains shift
+	
+		// store reversed bits of `n`. Initially, all bits are set to 0
+		int reverse = 0;
+	
+		// do till all bits are processed
+		while (pos >= 0 && n)
+		{
+			// if the current bit is 1, then set the corresponding bit in the result
+			if (n & 1) {
+				reverse = reverse | (1 << pos);
+			}
+	
+			n >>= 1;                // drop current bit (divide by 2)
+			pos--;                  // decrement shift by 1
+		}
+	
+		return reverse;
+	}
+
+25) Swap adjacent bits
+
+	/*
+		1. SEPARATE:
+ 
+		00101101011001010111000110001001   &    (n)
+		10101010101010101010101010101010        (0xAAAAAAAA)
+		————————————————————————————————
+		00101000001000000010000010001000        (Contains all even bits)
+		
+		
+		00101101011001010111000110001001   &    (n)
+		01010101010101010101010101010101        (0x55555555)
+		————————————————————————————————
+		00000101010001010101000100000001        (Contains all odd bits)
+		
+		
+		2. SHIFT & MERGE:
+		
+		00010100000100000001000001000100   |    (Right shift even bits by 1)
+		00001010100010101010001000000010        (Left shift odd bits by 1)
+		————————————————————————————————
+		00011110100110101011001001000110        (Adjacent bits swapped)
+	*/
+
+	int swapAdjacentBits(int n) {
+    return (((n & 0xAAAAAAAA) >> 1) | ((n & 0x55555555) << 1));
+	}
+
+26) Total number of bits in a number
+	unsigned int countBits(unsigned int n)
+	{
+	unsigned int count = 0;
+	while (n)
+	{
+			count++;
+			n >>= 1;
+		}
+		return count;
+	}
+
+27)  Swap endian (big to little) or (little to big):
+
+	uint32_t num = 9;
+	uint32_t b0,b1,b2,b3;
+	uint32_t res;
+
+	b0 = (num & 0x000000ff) << 24u;
+	b1 = (num & 0x0000ff00) << 8u;
+	b2 = (num & 0x00ff0000) >> 8u;
+	b3 = (num & 0xff000000) >> 24u;
+
+	res = b0 | b1 | b2 | b3;
+
+	printf("%" PRIX32 "\n", res);
+	
+

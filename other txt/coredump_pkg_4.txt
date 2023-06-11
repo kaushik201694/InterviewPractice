@@ -1,0 +1,94 @@
+eselnvlx2765 [15:26] [/tools/swdev/bin] -> ./coredump.20170228 -all ~/VRE-5515/20191217_141853_parpd.9906.1576592333.evr_3d23_vsfo-evr1.core
+Coredump (v1.11) script by Mike Andersen.  Email: mike.andersen@ericsson.com
+Analyzing corefile...
+/home/zchakau/VRE-5515/20191217_141853_parpd.9906.1576592333.evr_3d23_vsfo-evr1.core: ELF 64-bit LSB core file x86-64, version 1 (SYSV), SVR4-style, from '/usr/lib/siara/bin/parpd --Restart', real uid: 0, effective uid: 0, real gid: 0, effective gid: 0, execfn: '/usr/lib/siara/bin/parpd', platform: 'x86_64'
+    GDB: /tools/swdev/bin/gdb/bin/x86_64-poky-linux-gdb
+ TARGET: SSR-RP
+PROCESS: parpd
+VERSION: 20.0.0.0 (private 17Dec13:13:392019-zchakau)
+ BRANCH: 
+Enter location of image: /home/zchakau/VRE-5515/pkg-vipp-vrp4.tar.gz
+  IMAGE: /home/zchakau/VRE-5515/pkg-vipp-vrp4.tar.gz
+Temporary directory: /tmp/coredump-zchakau
+Generating backtrace for 'parpd'...
+sh: line 0: cd: /tools/swdev/bin/src: No such file or directory
+cp: cannot stat `/tools/swdev/bin/src/./gdb/bin/obj/Linux-i686/sysroots/x86_64-wrs-linux/usr/src/debug/eglibc-sourcery-compile/2.18-4.8-r1/glibc-2.18-4.8/nptl/pthread_create.c': No such file or directory
+#0  0x000000000040a53f in parp_wrkq_handler ()
+#1  0x00002b2f38d493d4 in start_thread (arg=0x2b2f3febc700) at pthread_create.c:460
+#2  0x00002b2f39d0790d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+#0  0x00002b2f39d005e3 in select () at ../sysdeps/unix/syscall-template.S:84
+#1  0x00002b2f35034085 in ipcThread () from ./usr/lib/siara/lib64/libipc.so.0.0
+#2  0x00002b2f38d493d4 in start_thread (arg=0x2b2f3f4b7700) at pthread_create.c:460
+#3  0x00002b2f39d0790d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 7 (LWP 9923):
+#0  __lll_unlock_wake () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:371
+#1  0x00002b2f38d4d051 in __pthread_mutex_unlock_usercnt (mutex=0xcc3fb8 <parp+184>, decr=<optimized out>) at pthread_mutex_unlock.c:57
+#2  0x00002b2f3851ceb5 in msgq_insert () from ./usr/lib/siara/lib64/libmsg_queue.so.0.0
+#3  0x00002b2f3851cf56 in msgq_send () from ./usr/lib/siara/lib64/libmsg_queue.so.0.0
+#4  0x0000000000403159 in parp_wrkq_enqueue ()
+#5  0x0000000000403a1f in parp_enqueue_wrkq_data ()
+#6  0x000000000040dce4 in parp_ipc_main ()
+#7  0x00002b2f38d493d4 in start_thread (arg=0x2b2f400bd700) at pthread_create.c:460
+#8  0x00002b2f39d0790d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 6 (LWP 9906):
+#0  0x00002b2f38d4a64d in pthread_join (threadid=47481935873792, thread_return=0x7fff4f728768) at pthread_join.c:90
+#1  0x0000000000405c1f in main ()
+
+Thread 5 (LWP 9921):
+#0  pthread_cond_timedwait () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_timedwait.S:225
+#1  0x00002b2f3851d06f in msgq_receive () from ./usr/lib/siara/lib64/libmsg_queue.so.0.0
+#2  0x0000000000404725 in parp_timer_handler ()
+#3  0x00002b2f38d493d4 in start_thread (arg=0x2b2f3fcbb700) at pthread_create.c:460
+#4  0x00002b2f39d0790d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 4 (LWP 9919):
+#0  pthread_cond_wait () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x00002b2f35021deb in ipcReceiveEx () from ./usr/lib/siara/lib64/libipc.so.0.0
+#2  0x00002b2f3502a17c in ipcReceive () from ./usr/lib/siara/lib64/libipc.so.0.0
+#3  0x0000000000410052 in parpd_cli_thread ()
+#4  0x00002b2f38d493d4 in start_thread (arg=0x2b2f3f8b9700) at pthread_create.c:460
+#5  0x00002b2f39d0790d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 3 (LWP 9918):
+#0  pthread_cond_wait () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x00002b2f35034393 in ipcStats () from ./usr/lib/siara/lib64/libipc.so.0.0
+#2  0x00002b2f38d493d4 in start_thread (arg=0x2b2f3f6b8700) at pthread_create.c:460
+#3  0x00002b2f39d0790d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 2 (LWP 9920):
+#0  0x00002b2f38d52203 in recvfrom () at ../sysdeps/unix/syscall-template.S:84
+#1  0x00002b2f3a1c8eb2 in rbos_tipc_rcv_data () from ./usr/lib/siara/lib64/librbostipc.so.0.0
+#2  0x00002b2f34183499 in rbn_evt_sub_handler_helper () from ./usr/lib/siara/lib64/librbn_events.so.0.0
+#3  0x00002b2f341840ca in rbn_evt_hi_sub_handler () from ./usr/lib/siara/lib64/librbn_events.so.0.0
+#4  0x00002b2f38d493d4 in start_thread (arg=0x2b2f3faba700) at pthread_create.c:460
+#5  0x00002b2f39d0790d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 1 (LWP 9922):
+#0  0x000000000040a53f in parp_wrkq_handler ()
+#1  0x00002b2f38d493d4 in start_thread (arg=0x2b2f3febc700) at pthread_create.c:460
+#2  0x00002b2f39d0790d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+(gdb) up 1
+#1  0x00002b2f38d493d4 in start_thread (arg=0x2b2f3febc700) at pthread_create.c:460
+460	pthread_create.c: No such file or directory.
+(gdb) info locals
+__res = <optimized out>
+pd = 0x2b2f3febc700
+now = <optimized out>
+unwind_buf = {cancel_jmp_buf = {{jmp_buf = {47481935873792, -5733128846547410285, 140734526293630, 140734526293631, 3, 0, -1859517808560364909, -1859524741048229229}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+not_first_call = <optimized out>
+pagesize_m1 = <optimized out>
+sp = <optimized out>
+freesize = <optimized out>
+__PRETTY_FUNCTION__ = "start_thread"
+(gdb) up
+#2  0x00002b2f39d0790d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+109	../sysdeps/unix/sysv/linux/x86_64/clone.S: No such file or directory.
+(gdb) info locals
+No locals.
+(gdb) up
+/tmp/coredump-zchakau/gdb.cmd:13: Error in sourced command file:
+Initial frame selected; you cannot go up.
+Removing temporary directory: /tmp/coredump-zchakau
+eselnvlx2765 [15:30] [/tools/swdev/bin] -> 

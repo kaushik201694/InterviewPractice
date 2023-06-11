@@ -1,0 +1,190 @@
+(gdb) info break
+No breakpoints or watchpoints.
+(gdb) 
+No breakpoints or watchpoints.
+(gdb) 
+No breakpoints or watchpoints.
+(gdb) b pkt_trace_count_and_capture      
+Breakpoint 1 at 0x53fb84: pkt_trace_count_and_capture. (3 locations)
+(gdb) c
+Continuing.
+[Switching to Thread 0x7ffff159f700 (LWP 20665)]
+
+Breakpoint 1, epp_pcl_rx_proc (channelId=VSPIDER_HAL_CHANNEL_ID_FAB, pkthdl=0x6200181a0b00)
+    at sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c:876
+876	sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c: No such file or directory.
+(gdb) t
+[Current thread is 6 (Thread 0x7ffff159f700 (LWP 20665))]
+(gdb) bt
+#0  epp_pcl_rx_proc (channelId=VSPIDER_HAL_CHANNEL_ID_FAB, pkthdl=0x6200181a0b00) at sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c:876
+#1  0x00007ffff4bb107c in vspider_rx_thread_poll_fab (data=0x41fe5880) at src/essif_uio_infra/vspider/vspider_hal_thread.c:911
+#2  0x00007ffff4bb345f in vspider_hal_mbox_main_loop () at src/essif_uio_infra/vspider/vspider_hal_mbox.c:539
+#3  0x00007ffff4d90979 in vspider_io_thread_hdlr (arg=<optimized out>) at src/essif_uio_infra/vspider/vspider_hal_thread.c:1333
+#4  0x00007ffff452a3d4 in start_thread (arg=0x7ffff159f700) at pthread_create.c:460
+#5  0x00007ffff339190d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+(gdb) call vspider_hal_mark_get_packet_trace(0x6200181a0b00)
+No symbol "vspider_hal_mark_get_packet_trace" in current context.
+(gdb) call vspider_hal_mark_get_packet_trace(pkthdl)
+No symbol "vspider_hal_mark_get_packet_trace" in current context.
+(gdb) call vspider_hal_mark_get_packet_trace(pkthdl)
+No symbol "vspider_hal_mark_get_packet_trace" in current context.
+(gdb) p vspider_rx_thread_poll_fab
+$1 = {int (void *)} 0x7ffff4bb0f00 <vspider_rx_thread_poll_fab>
+(gdb) p vspider_hal_mark_get_packet_trace
+No symbol "vspider_hal_mark_get_packet_trace" in current context.
+(gdb) p pkthdl
+$2 = (uintptr_t *) 0x6200181a0b00
+(gdb) p *pkthdl
+$3 = 107752543882816
+(gdb) call pktvio_fg_get_pkt_trace_mark(pkthdl)
+No symbol "pktvio_fg_get_pkt_trace_mark" in current context.
+(gdb) p pkthdl
+$4 = (uintptr_t *) 0x6200181a0b00
+(gdb) p (pkthdl *)pkthdl
+A syntax error in expression, near `)pkthdl'.
+(gdb) bt
+#0  epp_pcl_rx_proc (channelId=VSPIDER_HAL_CHANNEL_ID_FAB, pkthdl=0x6200181a0b00) at sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c:876
+#1  0x00007ffff4bb107c in vspider_rx_thread_poll_fab (data=0x41fe5880) at src/essif_uio_infra/vspider/vspider_hal_thread.c:911
+#2  0x00007ffff4bb345f in vspider_hal_mbox_main_loop () at src/essif_uio_infra/vspider/vspider_hal_mbox.c:539
+#3  0x00007ffff4d90979 in vspider_io_thread_hdlr (arg=<optimized out>) at src/essif_uio_infra/vspider/vspider_hal_thread.c:1333
+#4  0x00007ffff452a3d4 in start_thread (arg=0x7ffff159f700) at pthread_create.c:460
+#5  0x00007ffff339190d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+(gdb) bt
+#0  epp_pcl_rx_proc (channelId=VSPIDER_HAL_CHANNEL_ID_FAB, pkthdl=0x6200181a0b00) at sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c:876
+#1  0x00007ffff4bb107c in vspider_rx_thread_poll_fab (data=0x41fe5880) at src/essif_uio_infra/vspider/vspider_hal_thread.c:911
+#2  0x00007ffff4bb345f in vspider_hal_mbox_main_loop () at src/essif_uio_infra/vspider/vspider_hal_mbox.c:539
+#3  0x00007ffff4d90979 in vspider_io_thread_hdlr (arg=<optimized out>) at src/essif_uio_infra/vspider/vspider_hal_thread.c:1333
+#4  0x00007ffff452a3d4 in start_thread (arg=0x7ffff159f700) at pthread_create.c:460
+#5  0x00007ffff339190d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+(gdb) show break
+(gdb) show break all
+Undefined show breakpoint command: "all".  Try "help show breakpoint".
+(gdb) del break
+Delete all breakpoints? (y or n) y
+(gdb) break vspider_hal_mark_packet_trace
+Function "vspider_hal_mark_packet_trace" not defined.
+Make breakpoint pending on future shared library load? (y or [n]) n
+(gdb) break vspider_hal_mark_pkt_trace
+Breakpoint 2 at 0x5409a7: file /workspace/git/xswecha/confd/pkt-trace-14-june/ssr/obj/asg-lc2-epp-x86-linux-x86-64-static/usr/include/appu-essif/pktvio_api_inline.h, line 286.
+(gdb) call vspider_hal_mark_get_pkt_trace(pkthdl) 
+No symbol "vspider_hal_mark_get_pkt_trace" in current context.
+(gdb) call vspider_hal_mark_get_packket_trace(pkthdl) 
+No symbol "vspider_hal_mark_get_packket_trace" in current context.
+(gdb) call vspider_hal_mark_get_packet_trace(pkthdl) 
+No symbol "vspider_hal_mark_get_packet_trace" in current context.
+(gdb) call vspider_hal_mark_get_p^CQuittrace(pkthdl) 
+(gdb) p vspider_hal_mark_get_packet_trace            
+No symbol "vspider_hal_mark_get_packet_trace" in current context.
+(gdb) 
+No symbol "vspider_hal_mark_get_packet_trace" in current context.
+(gdb) c
+Continuing.
+^C
+Program received signal SIGINT, Interrupt.
+[Switching to Thread 0x7ffff7ff1d80 (LWP 20633)]
+0x00007ffff338a5e3 in select () at ../sysdeps/unix/syscall-template.S:84
+84	T_PSEUDO (SYSCALL_SYMBOL, SYSCALL_NAME, SYSCALL_NARGS)
+(gdb) p vspider_hal_pkt_get_hash
+No symbol "vspider_hal_pkt_get_hash" in current context.
+(gdb) bt
+#0  0x00007ffff338a5e3 in select () at ../sysdeps/unix/syscall-template.S:84
+#1  0x00000000004a5c0d in spcli_service_request (spcli_server_fd=18) at sw/se/xc/bsd/plat/asg/epp/arch-common/infra/spcli/spcli_server_bg.c:88
+#2  0x00000000004a5f03 in start_spcli_server () at sw/se/xc/bsd/plat/asg/epp/arch-common/infra/spcli/spcli_server_bg.c:201
+#3  0x000000000044470e in main () at sw/se/xc/bsd/plat/asg/epp/apps/fwd/test/sneak/vfrwd_bg.c:52
+(gdb) c
+Continuing.
+^C
+Program received signal SIGINT, Interrupt.
+0x00007ffff338a5e3 in select () at ../sysdeps/unix/syscall-template.S:84
+84	T_PSEUDO (SYSCALL_SYMBOL, SYSCALL_NAME, SYSCALL_NARGS)
+(gdb) p (struct pktvio_rte_mbuf *)(pkthdl))->mark
+No symbol "pkthdl" in current context.
+(gdb) c
+Continuing.
+^C
+Program received signal SIGINT, Interrupt.
+0x00007ffff338a5e3 in select () at ../sysdeps/unix/syscall-template.S:84
+84	T_PSEUDO (SYSCALL_SYMBOL, SYSCALL_NAME, SYSCALL_NARGS)
+(gdb) break packet_trace_count_and_capture
+Function "packet_trace_count_and_capture" not defined.
+Make breakpoint pending on future shared library load? (y or [n]) n
+(gdb) bt
+#0  0x00007ffff338a5e3 in select () at ../sysdeps/unix/syscall-template.S:84
+#1  0x00000000004a5c0d in spcli_service_request (spcli_server_fd=18) at sw/se/xc/bsd/plat/asg/epp/arch-common/infra/spcli/spcli_server_bg.c:88
+#2  0x00000000004a5f03 in start_spcli_server () at sw/se/xc/bsd/plat/asg/epp/arch-common/infra/spcli/spcli_server_bg.c:201
+#3  0x000000000044470e in main () at sw/se/xc/bsd/plat/asg/epp/apps/fwd/test/sneak/vfrwd_bg.c:52
+(gdb) del break
+Delete all breakpoints? (y or n) y
+(gdb) break pkt_trace_count_and_capture
+Breakpoint 3 at 0x53fb84: pkt_trace_count_and_capture. (3 locations)
+(gdb) c
+Continuing.
+[Switching to Thread 0x7ffff159f700 (LWP 20665)]
+
+Breakpoint 3, epp_pcl_rx_proc (channelId=VSPIDER_HAL_CHANNEL_ID_FAB, pkthdl=0x62003238fb40)
+    at sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c:876
+876	sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c: No such file or directory.
+(gdb) bt
+#0  epp_pcl_rx_proc (channelId=VSPIDER_HAL_CHANNEL_ID_FAB, pkthdl=0x62003238fb40) at sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c:876
+#1  0x00007ffff4bb107c in vspider_rx_thread_poll_fab (data=0x41fe5880) at src/essif_uio_infra/vspider/vspider_hal_thread.c:911
+#2  0x00007ffff4bb345f in vspider_hal_mbox_main_loop () at src/essif_uio_infra/vspider/vspider_hal_mbox.c:539
+#3  0x00007ffff4d90979 in vspider_io_thread_hdlr (arg=<optimized out>) at src/essif_uio_infra/vspider/vspider_hal_thread.c:1333
+#4  0x00007ffff452a3d4 in start_thread (arg=0x7ffff159f700) at pthread_create.c:460
+#5  0x00007ffff339190d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+(gdb) p (struct pktvio_rte_mbuf *)(pkthdl))->mark
+Junk after end of expression.
+(gdb) p ((struct pktvio_rte_mbuf *)(pkthdl)))->mark
+Junk after end of expression.
+(gdb) p ((pktvio_rte_mbuf *)(struct pktvio_rte_mbuf *)(pkthdl)))->mark
+No symbol "pktvio_rte_mbuf" in current context.
+(gdb) p ((struct pktvio_rte_mbuf *)(pkthdl)))->mark
+Junk after end of expression.
+(gdb) p pkthdl
+$5 = (uintptr_t *) 0x62003238fb40
+(gdb) p ((struct pktvio_rte_mbuf *)(pkthdl)))      
+Junk after end of expression.
+(gdb) p ((struct pktvio_rte_mbuf *)(pkthdl)) 
+$6 = (struct pktvio_rte_mbuf *) 0x62003238fb40
+(gdb) p ((struct pktvio_rte_mbuf *)(pkthdl))->mark
+$7 = 0 '\000'
+(gdb) c
+Continuing.
+
+Breakpoint 3, epp_pcl_rx_proc (channelId=VSPIDER_HAL_CHANNEL_ID_FAB, pkthdl=0x62003238fb40)
+    at sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c:881
+881	in sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c
+(gdb) p ((struct pktvio_rte_mbuf *)(pkthdl))->mark
+$8 = 0 '\000'
+(gdb) c
+Continuing.
+
+Breakpoint 3, epp_pcl_rx_proc (channelId=VSPIDER_HAL_CHANNEL_ID_FPP, pkthdl=0x6200085cde40)
+    at sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c:866
+866	in sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c
+(gdb) p ((struct pktvio_rte_mbuf *)(pkthdl))->mark
+$9 = 1 '\001'
+(gdb) c
+Continuing.
+
+Breakpoint 3, epp_pcl_rx_proc (channelId=VSPIDER_HAL_CHANNEL_ID_FPP, pkthdl=0x6200085cde40)
+    at sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c:881
+881	in sw/se/xc/bsd/plat/asg/epp/cpu/hae/pcl/src/pcl_hae_rx_fg.c
+(gdb) p ((struct pktvio_rte_mbuf *)(pkthdl))->mark
+$10 = 1 '\001'
+(gdb) c
+Continuing.
+      ^C
+Program received signal SIGINT, Interrupt.
+[Switching to Thread 0x7ffff7ff1d80 (LWP 20633)]
+0x00007ffff338a5e3 in select () at ../sysdeps/unix/syscall-template.S:84
+84	T_PSEUDO (SYSCALL_SYMBOL, SYSCALL_NAME, SYSCALL_NARGS)
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 20633] will be detached.
+
+Quit anyway? (y or n) y
+Detaching from program: /usr/lib/siara/bin/vfrwd, process 20633
+root@vsfo-1[]:/md> timed out waiting for input: auto-logout
+_pvadmin@vsfo-1[]:/md> timed out waiting for input: auto-logout
+Connection to lc-1 closed.

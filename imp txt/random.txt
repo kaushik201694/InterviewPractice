@@ -1,0 +1,268 @@
+Random things learnt
+-------------------------
+
+1) API --> An application program interface (API) is code that allows two software programs to communicate with each other. 
+           The API defines the correct way for a developer to write a program that requests services from an operating 
+		   system (OS) or other application.
+		   
+2)When a program is executing, multiple types of memory gets used up to process the execution. These memeory blocks are stack , 
+ static/global and heap.
+			stack --> this is where all the contexts of any function is stored
+			static/global --> plcae of global variables
+			heap --> for dynamic memory allocation
+
+3) "stackoverflow" occurs when there are many nested loops each calling the other and it in result exceeds the allocated stack memory 
+    which is always fixed for a program/code . It caused the code execution to crash.  https://www.youtube.com/watch?v=_8-ht2AKyH4 
+	Ex- > A bad recursion program.
+	
+4)Context Switch
+In computing, a context switch is the process of storing the state of a process or of a thread, 
+so that it can be restored and execution resumed from the same point later. This allows multiple
+processes to share a single CPU, and is an essential feature of a multitasking operating system.
+
+
+5) INT_MIN --> its a macro that stores highly negative values
+        --> useful for comaprisons
+		--> #include<limits.h>
+		
+6) Size of void pointer is of 4 or 8 bytes depending on the platform/environment the code is been executed.
+   4 bytes id for 32-bit machines and 8 bytes is for 64-bit machines. (also , 2bytes for 16-bit machines).
+	
+7) MUTEX vs SEMAPHORE vs Spinlock
+	  Semaphore: Use a semaphore when you (thread) want to sleep till some other thread tells you to wake up. 
+	             Semaphore 'down' happens in one thread (producer) and semaphore 'up' (for same semaphore) happens 
+				 in another thread (consumer) e.g.: In producer-consumer problem, producer wants to sleep till at 
+				 least one buffer slot is empty - only the consumer thread can tell when a buffer slot is empty.
+
+      Mutex: Use a mutex when you (thread) want to execute code that should not be executed by any other thread at 
+	         the same time. Mutex 'down' happens in one thread and mutex 'up' must happen in the same thread later 
+			 on. e.g.: If you are deleting a node from a global linked list, you do not want another thread to muck 
+			 around with pointers while you are deleting the node. When you acquire a mutex and are busy deleting a node, 
+			 if another thread tries to acquire the same mutex, it will be put to sleep till you release the mutex.
+
+      Spinlock: Use a spinlock when you really want to use a mutex but your thread is not allowed to sleep. 
+	           e.g.: An interrupt handler within OS kernel must never sleep. If it does the system will freeze / crash. 
+			   If you need to insert a node to globally shared linked list from the interrupt handler, acquire a 
+			   spinlock - insert node - release spinlock.
+		
+8) This declaration/initialization will work --> int arr[7]={0};
+   But this declaration/initialization won't work --> int arr[n]={0};
+
+   This is because the elements of an array can't be initialized to "0" or any other value when the size of the
+   array is variable.
+
+9) Using host/network byte ordering, we can exchange data between hosts using different architectures.
+   
+10)  OSI layer has 7 layers. Each of these layers are a collection of protocols.
+			7. Application Layer:-> When we are syaing application layer, we arent reffering chrome/firefox. Rather, we are	
+									are reffering to the protocols that makes these apllications work on the internet.
+									So, application layer is used by the newtowrk applications. On these layer, we have many 
+									protocols like:-> HTTP, HTTPs, FTP, NFS, FMTP, DHCP, SNMP, TELNET, POP3, IRC, NNTP an others.
+									All these protocols collectively from the application layer. Different works uses different
+									protocols. Like for File transfer, FTP is used ; for Web Surfing, HTTPs is used; for Emails,
+									SMTP is used; for virtual machines, TELNET is used.
+			6. Presentation Layer:-> This layer receives data from application layer. This data is in the form of characters and
+									numbers. So the presentation layer converts it into machine understandable binary format. For
+									example, data will be in the ASCII format and it will be converted to EBCDIC code. THis function
+									of presentation layer is called "tranlation". Now, before this data is trasnmitted further,
+									presentation layer reduces the number of bits used that were used to represent the original
+									data. This bit reduction is called "Data compression" which can be either lossy or lossless.
+									This is done to reduce the size of the data which will help in increasing the data transfer speed.
+									TO maintain the integrity of the data, it is "encrypted" which increases the security for the data.
+									The "decryption" process is also done when the flow is in opposite direction. SSL (Secure Socket Layer)
+									protocol is used for encryption and decryption of data.
+			5. Session Layer:->   This layer helps in setting up and managing connections /sessions enabling sending/receiving of data.
+									This is followed by termination of the session.	This layer uses APIs like NETBIOS that will
+									prefrom Authentication and Authorizaion checks which are used by the sever to check whether you
+									have premission to access a file. Session layer also keeps tracks on which data packets belong to
+									which file, eiter its a text file or an image file. So, typically a web browser like chrome and firefox 
+									deos all these works present on layers 7,6 & 5 by there own.
+			4. Transport Layer:-> 	
+
+
+
+
+
+
+
+11) Layer 3 header purpose is to get the data from end to end. Layer 2 header purpose is to get the data from hop to hop.
+
+12) After router receives a packet from a network, firstly it strips the layer 2 header. 			
+									
+13)	Cache memory is made up from Static RAM. RAM is made up from Dynamic RAM. SRAM is typically faster than DRAM since it 
+	doesn't have refresh cycles. Since each SRAM memory cell is comprised of 6 Transistors unlike a DRAM memory cell, which is
+	comprised of 1 Transistor and 1 Capacitor, the cost per memory cell is far greater in an SRAM compared to a DRAM.
+	
+14) Proxy use cases:
+	1) 	To speed up Internet surfing. If use proxy server, all requests from client computers will reach the proxy server at first,
+		if the proxy server has cached the required resources in its local hard disk before with the web cache function, clients will
+		get feedback directly from proxy server, it will be more quickly than direct accessing.
+	2) 	To hide the IP address of the client computer so that it can surf anonymous, this is mostly for security reasons.
+		A proxy server can act as an intermediary between the user's computer and the Internet to prevent from attack and unexpected access.
+	3)	To implement Internet access control like authentication for Internet connection, bandwidth control, online time control,
+		internet web filter and content filter etc.
+	4)	To bypass security restrictions and filters. For example, many work offices have blocked facebook and myspace however, 
+		you can use proxy server to bypass such restrictions and access blocked websites easily.
+	5)	To scan outbound content, e.g., for data leak protection.
+	6)	To circumvent regional restrictions. For example, a server using IP-based geolocation to restrict its service to a 
+		certain country can be accessed using a proxy located in that country to access the service.	
+		
+
+15) Storage classes:
+	1) Automatic storage class:
+			Storage --> Memory
+			Default initial value --> Unpredictable/garbage value
+			Scope --> local block in which the variable is defined
+			Life --> Till the control remains within the block where the variable is defined.
+			Keyword used to denote --> auto
+			**Check code 18 from misc_codes.c file for some more info
+	2) Register storage class:
+			Storage: CPU registers
+			Default initial value --> Garbage value
+			Scope --> Local to the bloack where the variable is defined
+			Life --> Till the control is there within the block where the variable is defined.
+			Keyword used --> register
+			Imp example --> 		#include <stdio.h>
+									int main() {
+										register int i;
+										
+										for(i=0;i<10;i++)
+											printf("%d ",i);
+										return 0;
+									}
+			In the above example, eventhough "i" is declared as "register", but it doesnt guarantee that "i" will be stored in CPU registers as it should have.
+			The reason is the number of CPU registers are limited in number and might be busy with some other task.
+	
+	3) Static Storage class:
+			Storage --> Memory
+			Default initial value --> Zero
+			Scope --> local block in which the variable is defined
+			Life --> Value of the variable persists between different function calls
+			Keyword used to denote --> static
+			** Check code 19 from misc_codes.c file to check how static works in a code.
+
+16) In a nested loop, a break statement only stops the loop it is placed in. 
+	Therefore, if a break is placed in the inner loop, the outer loop still continues. 
+	However, if the break is placed in the outer loop, all of the looping stops.
+	Same logic applies to the continue statement as well.
+
+17) The operators |, &, and ~ act on individual bits in parallel. They can be used only on integer types. 
+	a | b does an independent OR operation of each bit of a with the corresponding bit of b to generate that bit of the result.
+
+	The operators ||, &&, and ! act on each entire operand as a single true/false value. Any data type can be used that 
+	implicitly converts to bool. Many data types, including float implicitly convert to bool with an implied !=0 operation.
+
+	|| and && also "short circuit". That means whenever the value of the result can be determined by just the 
+	first operand, the second is not evaluated.
+
+	Example:
+	ptr && (*ptr==7) If ptr is zero, the result is false without any risk of seg faulting by dereferencing zero.
+	You could contrast that with (int)ptr & (*ptr). Ignoring the fact that this would be a bizarre operation 
+	to even want, if (int)ptr were zero, the entire result would be zero, so a human might think you don't need 
+	the second operand in that case. But the program will likely compute both anyway.
+
+18) In order to count the number of bits persent in a number, there is a direct way that we can do it instead of implementing
+	a for loop. We will use "log10()" library function available for C.
+	Ex-  int number = 5674;
+		 int digits = log10(number) + 1;
+		 printf("The number of digits present in number is = %d", digits);
+
+19) In an array, while traversing from both the ends using "for" loop
+
+20) Operators in C++ :
+	a) ::         Scope Resolution operator
+	b) ::*        Pointer to memeber declarator
+	c) ->*        Pointer to memeber operator
+	d) .*         Pointer to member operator
+	e) delete     Memory release operator
+	f) endl       Line feed operator
+	g) new        Memory Allocation operator
+	h) setw       Field width operator
+
+21) Telecommunication refers to the process of transmitting data or information, be it written, spoken etc, over long distances by sending electronic 
+	signals through a transmitter to a receiver. This is done by using nodes and switches to transmit messages across nodes that are not physically close, to 
+	ultimately reach the current end user in a cohesive way.
+
+	Networking refers to the infrastructure that enables this transmission of data. There are many different types of network including telephone and computer networks. 
+	These are generally considered to live under the broader telecommunication network umbrella. Today, networking often refers to computer networking.
+
+
+22) A class is a data type. If you have a class named Foo, you can create objects of class Foo and use them in many ways.
+	A namespace is simply an abstract way of grouping items together. Normally, you cannot have two functions in your program 
+	named bar(). If you place them in separate namespaces, then they can coexist (for example, as A::bar() and B::bar()). 
+	A namespace cannot be created as an object; think of it more as a naming convention.
+	If you are writing code that you want to be associated with an object that you can define and use as a variable, write a class.
+	If you are writing an API or library and you want to wrap up all of the functions and constants so that their names don't clash
+	with anything that the user might have written, use a namespace.
+
+23) more subnetworks, better the network management withing the company among different departments
+
+24) "Network byte order" always means big endian.
+	"Host byte order" depends on architecture of host. Depending on CPU, host byte order may be little endian, big endian 
+	or something else. (g)libc adapts to host architecture.
+	Because Intel architecture is little endian, this means that both functions are doing the same: reversing byte order.
+
+25) NIC is a hardware peripheral device that connets a machine to the network.
+
+26) Deadlock implementation:
+
+	std::mutex m1;
+	std::mutex m2;
+
+	void thread1() {
+	m1. lock();
+	std::this_thread::sleep_for(std::chrono: :seconds (1));
+	m2. lock();
+	cout << "Critical Section Of Thread Thread One\n";
+	m1. unlock();
+	m2. unlock();
+	}
+
+	void thread2() {
+	m2. lock();
+	std::this_thread::sleep_for(std::chrono::seconds (1));
+	m1. lock();
+	cout << "Critical Section Of Thread Thread Two\n";
+	m2. unlock();
+	m1. unlock();
+	}
+
+27) The volatile part has the tendency to force execution to fetch a variable from RAM and not the cached copy in registers or flash.
+
+28) Stack-> High Address to Low Address ; Heap -> Low Address to High Address
+
+29) IP header and IP packet representation in struct:
+
+	/* 
+	* IP Header 
+	*/ 
+	typedef struct 
+	{ 
+		uint8_t   ver_hlen;   /* Header version and length (dwords). */
+		uint8_t   service;    /* Service type. */
+		uint16_t  length;     /* Length of datagram (bytes). */
+		uint16_t  ident;      /* Unique packet identification. */
+		uint16_t  fragment;   /* Flags; Fragment offset. */
+		uint8_t   timetolive; /* Packet time to live (in network). */
+		uint8_t   protocol;   /* Upper level protocol (UDP, TCP). */
+		uint16_t  checksum;   /* IP header checksum. */
+		uint32_t  src_addr;   /* Source IP address. */
+		uint32_t  dest_addr;  /* Destination IP address. */
+
+	} NetIpHdr; 
+
+	#define IP_VER_HLEN     0x45 
+	#define IP_HEADER_LEN   sizeof(NetIpHdr) 
+	#define IP_DATA_LEN     (MTU - IP_HEADER_LEN) 
+
+	/*
+	* IP Packet       
+	*/ 
+	typedef struct 
+	{ 
+		NetIpHdr ipHdr; 
+		uint8_t  data[IP_DATA_LEN]; 
+
+	} NetIpPkt;
+
+30)  The ARP request consists of the IP and MAC addresses of both the device source and destination. The Mac address field of the destination device is kept empty.

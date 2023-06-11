@@ -1,0 +1,5 @@
+create/Add new user in AD(name of the lab. for our dev team, the name of the lab is different) site --> then add that user in UCC --> then we can use that user in UAD
+
+creating service in UCC for UAD to use it --> then we can assign a dnis number of this newly created service in Unified Director (inside "Numbering Plan" section)--> in UCC, we can add one or more agents to this service -->
+after that once we login to the UAD by entering the credentials of a particular agent, we shall have 2 different ways to call this agent(inbound operation). The one being its own specific dnis number,
+and the other being through the dnis number of the  service which we created. If the agent is idle, we can contact this agent via both of these dnis numbers.  

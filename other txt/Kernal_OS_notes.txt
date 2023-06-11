@@ -1,0 +1,61 @@
+LINUX kernal/OS things
+------------------------------
+
+---------------------------------------------------------------------
+The following are the 6 high level stages of a typical Linux boot process.
+
+1. BIOS
+BIOS stands for Basic Input/Output System
+Performs some system integrity checks
+Searches, loads, and executes the boot loader program.
+
+2. MBR
+MBR stands for Master Boot Record.
+It is located in the 1st sector of the bootable disk. Typically /dev/hda, or /dev/sda
+MBR is less than 512 bytes in size. This has three components 1) primary boot loader info in 1st 446 bytes 2) partition table info in next 
+64 bytes 3) MBR validation check in last 2 bytes.
+
+3. GRUB
+GRUB stands for Grand Unified Bootloader.
+If you have multiple kernel images installed on your system, you can choose which one to be executed.
+GRUB displays a splash screen, waits for few seconds, if you don’t enter anything, it loads the default kernel image as specified in 
+the grub configuration file.
+
+4. Kernel
+Mounts the root file system as specified in the “root=” in grub.conf
+Kernel executes the /sbin/init program
+
+5. Init
+Looks at the /etc/inittab file to decide the Linux run level.
+Following are the available run levels
+0 – halt
+1 – Single user mode
+2 – Multiuser, without NFS
+3 – Full multiuser mode
+4 – unused
+5 – X11
+6 – reboot
+
+6. Runlevel programs
+When the Linux system is booting up, you might see various services getting started. For example, it might say “starting sendmail …. OK”. 
+ Those are the runlevel programs, executed from the run level directory as defined by your run level.
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------------
+QUES -->If the parent process in killed , what happens to the child process?
+
+In Unix-based computer operating systems, init (short for initialization) is the first process started during booting of the computer system. 
+Init is a daemon process that continues running until the system is shut down. It is the direct or indirect ancestor of all other processes
+and automatically adopts all orphaned processes. Init is started by the kernel using a hard-coded filename; a kernel panic will occur if the 
+kernel is unable to start it. 
+
+In a Unix-like operating system any orphaned process will be immediately adopted by the special init system process: the kernel sets the 
+parent to init. This operation is called re-parenting and occurs automatically. Even though technically the process has the "init" process 
+as its parent, it is still called an orphan process since the process that originally created it no longer exists. In other systems 
+orphaned processes are immediately terminated by the kernel. In modern Linux systems, an orphan process may be reparented to a "subreaper" 
+process instead of init.
+
+----------------------------------------------------------------------------------------------------------------
+
+
+	

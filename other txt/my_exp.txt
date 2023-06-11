@@ -1,0 +1,27 @@
+I am a rookie project engineer who have completed PRP training in December on automation (Mobility) testing . 
+Currently I am working in NEPC domain as a trainee for past 2 months. I have learnt basics of Linux programming and Networking during this 
+period of time. Also during this period we have done various hands-on activity as requested by our mentor.
+In networking we did all our activities on VirtualBox.
+
+The following assignments were done in the VirtualBox-
+1) Creating a VM and making two clones(nodes) out of it.Now configuring IPs of each of the 3 VMs under a 
+   same network. After that we would do routing between node 1(clone 1) and node 2(clone 2) via the original VM.
+   After routing we will perform pinging between node 1 and node 2 via original VM (which basically acts as router here).
+
+2) Creating a VM and making two clones(nodes) out of it.Now configuring the original VM as SDN router
+   by creating OVS(open v Switch), running quagga(by creating daemon processes like zebra, ospfd,bgpd),running           
+   openmul,udpnserver and lastly udpnagent. The quagga and udpnagent runs in a namespace. In this namespace   "controlplane" is present.  
+   So we have to configure the controlplane IP . Now in the 2 nodes we will configure the IPs as     
+   well. After that we will add route from clone 1(node 1) to clone 2(node 2)  via the sdn router VM. After that we 
+   would have to ping between node 1 to node 2 via sdn router and we have to capture the packets with the help of 
+   tcpdump. 
+   
+   
+   
+   
+   
+   Working in Ericsson account as a developer. 
+   The domain in which I am working on is NFV. The team which I am working on focuses on TSM and PAP processes 
+   that interacts with the applications such as EPG, Ebuilder &WMG and u[dates the received information on the LC or SSC of the Ericsson routers such as EVR and SSR. 
+   Primary job is to fix solve TRs (bugs) cased due to TSM and PAP processes . 
+   Currently involved with a major feature development which focuses on improving the debuggability of a packet traversing through a router. 

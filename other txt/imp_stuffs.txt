@@ -1,0 +1,50 @@
+git iclone ssr -b <brach name>
+
+git iclone ssr -d <repo name>
+
+cd ..
+git clean -dxff
+cd pkt/
+export PATH=/tools/swdev/bin/:$PATH
+umask 0022
+gmake -s -j32 evr DBG=YES STRPDBG=yes SKIP=validate-scratch >& build.log
+
+
+
+
+gmake -s -j16 evr DBG=YES STRPDBG=yes SKIP=validate-scratch >& build.log
+
+git show -p
+
+git commit -a
+git commit --amend
+git ireview
+
+git add -A
+
+git reset filename.c
+git reset --soft HEAD~1
+
+
+
+export PATH=/tools/swdev/bin/:$PATH 
+umask 0022
+gmake -s -j32 evr DBG=YES STRPDBG=yes SKIP=validate-scratch >& build.log
+
+
+./comp/sdk/tools/packaging/scripts/swmbundle images/pkg-vipp-vrp.tar.gz images/CONFD-EVR-19.4.0.0.135.tar.gz /home/sysbuild/images/integration/SWM-EBUILDER_NATIVE-CONFD-19.4.0.0.135.tar.gz
+
+./comp/sdk/tools/packaging/scripts/bundleapp images/pkg-vipp-vrp.tar.gz images/CONFD-EVR-19.4.0.0.135.tar.gz
+
+
+show card 29 fabl tsm papt
+
+show card <card number> fabl tsm papt
+show tsmrp papt all
+
+
+show card 1 epp pfe 0 counters drop brief
+
+
+/project/swbuild/zkanpon/trees/sqa/ARTS/infra/config/tb_template      
+from arts                                                              --->to get the topology of all EVR chassis from vcloud
